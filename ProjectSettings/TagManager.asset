@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 2392074351
+    locked: 0
+  - name: Interactables
+    uniqueID: 152751849
+    locked: 0
+  - name: Trees
+    uniqueID: 2777376561
+    locked: 0
+  - name: Background
+    uniqueID: 4236018173
+    locked: 0
