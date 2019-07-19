@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"fontArvoBold",
+				"fontArvoBoldItal"
+			],
+			[
+				"fontAr",
+				"fontArvoReg"
+			],
+			[
 				"file",
 				"fileExists"
 			],
@@ -148,21 +156,21 @@
 	"buffers":
 	[
 		{
-			"file": "Saya.sublime-project",
+			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 60,
+				"buffer_size": 1147,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/Player.cs",
+			"file": "conf.lua",
 			"settings":
 			{
-				"buffer_size": 929,
-				"encoding": "UTF-8 with BOM",
-				"line_ending": "Windows"
+				"buffer_size": 85,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -245,10 +253,14 @@
 	},
 	"expanded_folders":
 	[
-		"/home/anglain/Storage/Coding/Unity_Projects/Saya/Assets/Scripts"
+		"/home/anglain/Storage/Coding/Love_Projects/Saya",
+		"/home/anglain/Storage/Coding/Love_Projects/Saya/fonts"
 	],
 	"file_history":
 	[
+		"/home/anglain/Storage/Coding/Love_Projects/Saya/Saya.sublime-project",
+		"/home/anglain/Storage/Coding/Love_Projects/BackdoorQuest/BackdoorQuest.sublime-project",
+		"/home/anglain/Storage/Coding/Love_Projects/Saya/Assets/Scripts/Player.cs",
 		"/home/anglain/Storage/Coding/Unity_Projects/SapperBoy/Sapper/SapperBoy-0.5.sublime-project",
 		"/home/anglain/Downloads/Telegram Desktop/to10.hs",
 		"/home/anglain/Storage/Igor/KMA_Software_Engineering/3-1/FP/FINAL/KR_podgotovka.hs",
@@ -305,7 +317,6 @@
 		"/home/anglain/Storage/Coding/Love_Projects/BackdoorQuest/Tileset.lua",
 		"/home/anglain/Storage/Coding/Love_Projects/SheepolutionTutorial/libraries/classic.lua",
 		"/home/anglain/Storage/Coding/Love_Projects/SheepolutionTutorial/main.lua",
-		"/home/anglain/Storage/Coding/Love_Projects/BackdoorQuest/BackdoorQuest.sublime-project",
 		"/home/anglain/Storage/Coding/Love_Projects/SheepolutionTutorial/conf.lua",
 		"/home/anglain/Storage/Coding/Love_Projects/SheepolutionTutorial/player.lua",
 		"/home/anglain/Storage/Coding/Love_Projects/SheepolutionTutorial/enemy.lua",
@@ -345,6 +356,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			")\n",
+			"')\n",
 			"pdate",
 			"= ",
 			"Shudra07",
@@ -375,65 +388,65 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Saya.sublime-project",
+					"file": "main.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 60,
+						"buffer_size": 1147,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								49,
-								49
+								1128,
+								1128
 							]
 						],
 						"settings":
 						{
 							"apply_syntax_touched": true,
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Assets/Scripts/Player.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 929,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								773,
-								773
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
+							"syntax": "Packages/Lua Love/LuaLove.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "conf.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 85,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								25,
+								25
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"syntax": "Packages/Lua Love/LuaLove.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -616,7 +629,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 163.0,
+	"side_bar_width": 227.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
