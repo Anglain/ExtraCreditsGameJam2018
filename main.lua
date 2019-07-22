@@ -22,14 +22,15 @@ local map = {}
 
 -- [=[ ========== CONSTANTS ========== ]=]
 local TILE_SIZE = 64
-local MAP_SIZE = 512
+local MAP_TILES = 8
 -- [=[ ======== CONSTANTS END ======== ]=]
 
 
 
 function love.load()
 	map = {
-		size = MAP_SIZE
+		size = MAP_TILES * TILE_SIZE,
+		tilesNumber = MAP_TILES
 	}
 	player = Player:new(1, 1, TILE_SIZE, map)
 

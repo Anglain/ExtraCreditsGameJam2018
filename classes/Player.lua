@@ -22,7 +22,7 @@ local Directions = {
 -- [=[ ======== LOCAL CONSTANTS END ======== ]=]
 
 
-function Player:new(pos_x, pos_y, tileSize, screenRef)
+function Player:new(pos_x, pos_y, tileSize, mapRef)
 	local player = {
 		pos = {
 			x = pos_x,
@@ -30,7 +30,7 @@ function Player:new(pos_x, pos_y, tileSize, screenRef)
 		},
 		size = tileSize,
 		direction = Directions.down,
-		screen = screenRef
+		map = mapRef
 	}
 
 	function player:update(dt)
@@ -60,7 +60,8 @@ function Player:new(pos_x, pos_y, tileSize, screenRef)
 			print('Direction changed to ' .. newPos.dir .. '!')
 		end
 
-		player.pos.x, player.pos.y = newPos.x, newPos.y
+		player.pos.x = (newPos.x >= 0 and ((newPos.x < player.map.tilesNumber and newPos.x) or player.map.tilesNumber - 1)) or 0
+		player.pos.y = (newPos.y >= 0 and ((newPos.y < player.map.tilesNumber and newPos.y) or player.map.tilesNumber - 1)) or 0
 		player.direction = newPos.dir
 	end
 
