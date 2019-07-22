@@ -1,4 +1,4 @@
---[==[
+--[==[	
 -- Saya project
 --
 -- Created on 19.07.2019
@@ -7,79 +7,59 @@
 -- Flusihing output to the console immideately
 io.stdout:setvbuf('no')
 
+-- [=[ ========== IMPORTS ========== ]=]
+require('classes/Player')
+-- [=[ ======== IMPORTS END ======== ]=]
+
+
+
+-- [=[ ========== LOCAL VARIABLES ========== ]=]
+local player = {}
+local map = {}
+-- [=[ ======== LOCAL VARIABLES END ======== ]=]
+
+
+
+-- [=[ ========== CONSTANTS ========== ]=]
+local TILE_SIZE = 64
+local MAP_SIZE = 512
+-- [=[ ======== CONSTANTS END ======== ]=]
 
 
 
 function love.load()
-	fontSize = 30
-
-	fontMonospaced = love.graphics.newFont('fonts/PTMono-Regular.ttf', fontSize)
-
-	letterChargeTime = 0.1
-	pauseTime = 0.8
-
-	text = 'Text one. '
-	text2 = 'Text two. '
-	text3 = 'Text three.'
-	drawnText = ''
-	textCoords = {x = 50, y = 70}
-	currentTime = 0
-	currentLetterIndex = 1
-	drawingLetters = true
-
-	scenario = {
-		text,
-		'pause',
-		text2,
-		'pause',
-		text3
+	map = {
+		size = MAP_SIZE
 	}
-	currentScenario = 1
+	player = Player:new(1, 1, TILE_SIZE, map)
+
+	love.graphics.setBackgroundColor(206/255, 214/255, 245/255, 1)
 end
 
 
 
 function love.update(dt)
-	currentTime = currentTime + dt
-
-	if drawingLetters then
-
-		if scenario[currentScenario] ~= 'pause' then
-
-			if currentTime >= letterChargeTime then
-				currentTime = 0
-
-				local charFromIndex = scenario[currentScenario]:sub(currentLetterIndex, currentLetterIndex)
-				drawnText = drawnText .. charFromIndex
-				local drawableCharFromIndex = love.graphics.newText(fontMonospaced, charFromIndex)
-
-				currentLetterIndex = currentLetterIndex + 1
-				charFromIndex = scenario[currentScenario]:sub(currentLetterIndex, currentLetterIndex)
-				if charFromIndex == ' ' then
-					drawnText = drawnText .. charFromIndex
-					currentLetterIndex = currentLetterIndex + 1
-				end
-
-				if currentLetterIndex > #scenario[currentScenario] then
-					currentLetterIndex = 1
-					currentScenario = currentScenario + 1
-				end
-			end
-
-		else
-			if currentTime >= pauseTime then
-				currentScenario = currentScenario + 1
-			end
-		end
-
-	end
-
-	drawingLetters = not (currentScenario > #scenario)
+	player:update(dt)
 end
 
 
 
 function love.draw()
-	love.graphics.setFont(fontMonospaced)
-	love.graphics.draw(love.graphics.newText(fontMonospaced, drawnText), textCoords.x, textCoords.y)
+	player:draw()
+end
+
+
+
+function love.keypressed(key)
+	if key == 'f' then
+		print('Respect paid.')
+	elseif key == 'right' then
+		player:move(1, 0)
+	elseif key == 'left' then
+		player:move(-1, 0)
+	elseif key == 'up' then
+		player:move(0, -1)
+	elseif key == 'down' then
+		player:move(0, 1)
+	end
 end

@@ -5,6 +5,6 @@
 --]==]
 
 function love.conf(t)
-	t.window.width = 650
-	t.window.height = 200
+	t.window.width = 512
+	t.window.height = 512
 end
