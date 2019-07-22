@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"current",
+				"currentLetterIndex"
+			],
+			[
 				"fontArvoBold",
 				"fontArvoBoldItal"
 			],
@@ -159,7 +163,7 @@
 			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 1147,
+				"buffer_size": 1730,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -168,7 +172,7 @@
 			"file": "conf.lua",
 			"settings":
 			{
-				"buffer_size": 85,
+				"buffer_size": 129,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -397,15 +401,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1147,
+						"buffer_size": 1730,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1128,
-								1128
+								421,
+								421
 							]
 						],
 						"settings":
@@ -414,7 +418,7 @@
 							"syntax": "Packages/Lua Love/LuaLove.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 150.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -426,15 +430,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 85,
+						"buffer_size": 129,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								25,
-								25
+								102,
+								102
 							]
 						],
 						"settings":
