@@ -30,7 +30,8 @@ function Player:new(pos_x, pos_y, tileSize, mapRef)
 		},
 		size = tileSize,
 		direction = Directions.down,
-		map = mapRef
+		map = mapRef,
+		color = {145/255, 126/255, 100/255, 1}
 	}
 
 	function player:update(dt)
@@ -39,12 +40,16 @@ function Player:new(pos_x, pos_y, tileSize, mapRef)
 
 	function player:draw()
 		currentColor[1], currentColor[2], currentColor[3], currentColor[4] = love.graphics.getColor()
-		love.graphics.setColor(145/255, 126/255, 100/255, 1)
+		love.graphics.setColor(player.color)
 		love.graphics.rectangle('fill', player.pos.x * player.size, player.pos.y * player.size, player.size, player.size)
 		love.graphics.setColor(currentColor)
 	end
 
 	function player:move(dx, dy)
+		-- ===================================================================================================
+		-- ============== TODO _____ MAKE PLAYER MOVEMENT CENTERED AROUND THE CAMERA _____ TODO ==============
+		-- ===================================================================================================
+
 		local newPos = {
 			x = player.pos.x + dx,
 			y = player.pos.y + dy
@@ -63,6 +68,11 @@ function Player:new(pos_x, pos_y, tileSize, mapRef)
 		player.pos.x = (newPos.x >= 0 and ((newPos.x < player.map.tilesNumber and newPos.x) or player.map.tilesNumber - 1)) or 0
 		player.pos.y = (newPos.y >= 0 and ((newPos.y < player.map.tilesNumber and newPos.y) or player.map.tilesNumber - 1)) or 0
 		player.direction = newPos.dir
+
+		return {
+			x = (newPos.x >= 0 and ((newPos.x < player.map.tilesNumber and dx * player.size) or 0)) or 0,
+			y = (newPos.y >= 0 and ((newPos.y < player.map.tilesNumber and dy * player.size) or 0)) or 0
+		}
 	end
 
 	return player

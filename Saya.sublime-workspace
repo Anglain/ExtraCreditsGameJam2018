@@ -163,7 +163,16 @@
 			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 1730,
+				"buffer_size": 1142,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "classes/Player.lua",
+			"settings":
+			{
+				"buffer_size": 2055,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -257,11 +266,16 @@
 	},
 	"expanded_folders":
 	[
-		"/home/anglain/Storage/Coding/Love_Projects/Saya",
-		"/home/anglain/Storage/Coding/Love_Projects/Saya/fonts"
+		"/home/anglain/Storage/Coding/Love_Projects/Saya"
 	],
 	"file_history":
 	[
+		"/home/anglain/Storage/Coding/Love_Projects/LifeSupportMission/Player.lua",
+		"/home/anglain/Storage/Coding/Love_Projects/ProcGenPractice/rooms/simpleRoom.lua",
+		"/home/anglain/Storage/Coding/Love_Projects/ProcGenPractice/main.lua",
+		"/home/anglain/Storage/Coding/Love_Projects/LifeSupportMission/Map.lua",
+		"/home/anglain/Storage/Coding/Love_Projects/Saya/conf.lua",
+		"/home/anglain/Storage/Coding/Love_Projects/Saya/README.md",
 		"/home/anglain/Storage/Coding/Love_Projects/Saya/Saya.sublime-project",
 		"/home/anglain/Storage/Coding/Love_Projects/BackdoorQuest/BackdoorQuest.sublime-project",
 		"/home/anglain/Storage/Coding/Love_Projects/Saya/Assets/Scripts/Player.cs",
@@ -360,6 +374,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"0",
+			"screenRef",
 			")\n",
 			"')\n",
 			"pdate",
@@ -401,15 +417,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1730,
+						"buffer_size": 1142,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								421,
-								421
+								812,
+								812
 							]
 						],
 						"settings":
@@ -418,7 +434,7 @@
 							"syntax": "Packages/Lua Love/LuaLove.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 150.0,
+						"translation.y": 360.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -426,6 +442,35 @@
 				},
 				{
 					"buffer": 1,
+					"file": "classes/Player.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2055,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1196,
+								1196
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"syntax": "Packages/Lua Love/LuaLove.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 405.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "conf.lua",
 					"semi_transient": false,
 					"settings":
@@ -450,7 +495,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
