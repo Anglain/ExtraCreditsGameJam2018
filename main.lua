@@ -71,10 +71,11 @@ function love.draw()
 	if gameState == GameStates.MainMenu then
 		mainMenuGui:draw()
 	elseif gameState == GameStates.Playing then
-		gameGui:draw()
 		love.graphics.translate(-1 * graphicsTranslation.x, -1 * graphicsTranslation.y)
 		map:draw()
 		player:draw()
+		love.graphics.translate(graphicsTranslation.x, graphicsTranslation.y)
+		gameGui:draw()
 	end
 end
 
