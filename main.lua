@@ -21,7 +21,7 @@ gspot = require('libs/Gspot')
 local Game = {
 	TILE_SIZE = 64,
 	MAP_TILES = 10,
-	MAP_SIZE = 0, -- uninitialized yet
+	MAP_SIZE = 0, -- initialization under the Game table
 	SCREEN_SIZE = 640,
 
 	GameStates = {
@@ -61,6 +61,7 @@ function love.load()
 	gameGui = GameGui:new(gspot, fontTable, Game)
 
 	Game.gameState = Game.GameStates.MainMenu
+	love.graphics.setBackgroundColor(123/255, 147/255, 158/255, 1)
 
 end
 
