@@ -2,21 +2,37 @@
 -- Saya project
 --
 -- Created on 23.07.2019
+-- File: Map.lua
 --]==]
 
 Map = {}
 Map.__index = Map
 
 
+
 -- [=[ ========== LOCAL VARIABLES ========== ]=]
-local currentColor = {}
 -- [=[ ======== LOCAL VARIABLES END ======== ]=]
 
 
-function Map:new(tileSize, mapTiles)
+-- [=[ ========== LOCAL CONSTANTS ========== ]=]
+local MapStates = {
+	World = 'world',
+	InBuilding = {
+		'inBuilding',
+		building = nil
+	}
+}
+-- [=[ ======== LOCAL CONSTANTS END ======== ]=]
+
+
+
+function Map:new(tileSize, tilesNumber)
+
+	local currentColor = {}
+
 	local map = {
 		tileSize = tileSize,
-		tilesNumber = mapTiles,
+		tilesNumber = tilesNumber,
 		color = {206/255, 214/255, 245/255, 1},
 		color2 = {0, 0, 0, 1}
 	}

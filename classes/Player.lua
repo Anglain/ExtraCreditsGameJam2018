@@ -2,15 +2,18 @@
 -- Saya project
 --
 -- Created on 22.07.2019
+-- File: Player.lua
 --]==]
 
 Player = {}
 Player.__index = Player
 
 
+
 -- [=[ ========== LOCAL VARIABLES ========== ]=]
-local currentColor = {}
 -- [=[ ======== LOCAL VARIABLES END ======== ]=]
+
+
 
 -- [=[ ========== LOCAL CONSTANTS ========== ]=]
 local Directions = {
@@ -22,7 +25,11 @@ local Directions = {
 -- [=[ ======== LOCAL CONSTANTS END ======== ]=]
 
 
+
 function Player:new(pos_x, pos_y, tileSize, mapRef)
+
+	local currentColor = {}
+
 	local player = {
 		pos = {
 			x = pos_x,
@@ -35,7 +42,7 @@ function Player:new(pos_x, pos_y, tileSize, mapRef)
 	}
 
 	function player:update(dt)
-
+		--
 	end
 
 	function player:draw()
@@ -69,6 +76,7 @@ function Player:new(pos_x, pos_y, tileSize, mapRef)
 		player.pos.y = (newPos.y >= 0 and ((newPos.y < player.map.tilesNumber and newPos.y) or player.map.tilesNumber - 1)) or 0
 		player.direction = newPos.dir
 
+		-- Returns move vector multiplied by tile size (for camera translation)
 		return {
 			x = (newPos.x >= 0 and ((newPos.x < player.map.tilesNumber and dx * player.size) or 0)) or 0,
 			y = (newPos.y >= 0 and ((newPos.y < player.map.tilesNumber and dy * player.size) or 0)) or 0

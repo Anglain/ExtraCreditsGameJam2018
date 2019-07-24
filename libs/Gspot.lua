@@ -520,7 +520,7 @@ Gspot.util = {
 		pos = this.Gspot:pos(pos.pos or pos or this.pos)
 		assert(pos:type() == 'Gspot.pos')
 		mode = mode or 'fill'
-		love.graphics.rectangle(mode, pos.x, pos.y, pos.w, pos.h)
+		love.graphics.rectangle(mode, pos.x, pos.y, pos.w, pos.h, 2, 2)
 	end,
 
 	setimage = function(this, img)
