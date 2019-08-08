@@ -17,8 +17,13 @@ function GameGui:new(refGspot, refFontTable, Game)
 	}
 
 	gameGui.gui.style.unit = Game.SCREEN_SIZE * 0.04
+	gameGui.gui.style.gapSize = Game.SCREEN_SIZE * 0.01
 	gameGui.gui.style.font = refFontTable['PTMonoRegularSmall']
 
+
+	--[[ ================================== ]]
+	--[[ ======== Game Gui Elements= ====== ]]
+	--[[ ================================== ]]
 	local mainMenuButW, mainMenuButH = gameGui.gui.style.unit * 3, gameGui.gui.style.unit
 	local mainMenuButton = gameGui.gui:button('Main Menu', {
 		x = 16,
@@ -29,15 +34,17 @@ function GameGui:new(refGspot, refFontTable, Game)
 	mainMenuButton.click = function(this)
 		print('--- Main menu button clicked [GAME_GUI]')
 		Game:swapState(Game.GameStates.MainMenu)
-	end
+	end	
 
 
+	--[[ ================================== ]]
+	--[[ ======= Essential Functions ====== ]]
+	--[[ ================================== ]]
 	function gameGui:update(dt)
 		gameGui.gui:update(dt)
 	end
 
 	function gameGui:draw()
-
 		gameGui.gui:draw()
 	end
 

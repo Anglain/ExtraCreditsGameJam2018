@@ -38,7 +38,7 @@ function Map:new(tileSize, tilesNumber)
 	}
 
 	function map:update(dt)
-
+		
 	end
 
 	function map:draw()

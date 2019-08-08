@@ -13,6 +13,7 @@ require('classes/Player')
 require('classes/Map')
 require('classes/MainMenuGui')
 require('classes/GameGui')
+require('classes/PauseGui')
 gspot = require('libs/Gspot')
 -- [=[ ======== IMPORTS END ======== ]=]
 
@@ -39,6 +40,7 @@ local graphicsTranslation = { x = 0, y = 0 }
 local fontTable = {}
 local mainMenuGui = {}
 local gameGui = {}
+local pauseGui = {}
 -- [=[ ======== LOCAL VARIABLES END ======== ]=]
 
 
@@ -50,6 +52,7 @@ function love.load()
 	fontTable['ArvoRegularItalic'] = love.graphics.newFont('fonts/Arvo-RegularItalic.ttf', 24)
 	fontTable['ArvoBold'] = love.graphics.newFont('fonts/Arvo-Bold.ttf', 24)
 	fontTable['ArvoBoldItalic'] = love.graphics.newFont('fonts/Arvo-BoldItalic.ttf', 24)
+	fontTable['PTMonoRegularLarge'] = love.graphics.newFont('fonts/PTMono-Regular.ttf', 36)
 	fontTable['PTMonoRegularBig'] = love.graphics.newFont('fonts/PTMono-Regular.ttf', 22)
 	fontTable['PTMonoRegularSmall'] = love.graphics.newFont('fonts/PTMono-Regular.ttf', 12)
 
@@ -60,6 +63,7 @@ function love.load()
 
 	mainMenuGui = MainMenuGui:new(gspot, fontTable, Game)
 	gameGui = GameGui:new(gspot, fontTable, Game)
+	pauseGui = PauseGui:new(gspot, fontTable, Game)
 
 	Game.gameState = Game.GameStates.MainMenu
 	love.graphics.setBackgroundColor(123/255, 147/255, 158/255, 1)
@@ -80,6 +84,13 @@ function love.update(dt)
 
 		gameGui:update(dt)
 
+	elseif Game.gameState == Game.GameStates.Paused then
+		
+		map:update(dt)
+		player:update(dt)
+
+		pauseGui:update(dt)
+
 	end
 end
 
@@ -98,6 +109,13 @@ function love.draw()
 		love.graphics.translate(graphicsTranslation.x, graphicsTranslation.y)
 		gameGui:draw()
 
+	elseif Game.gameState == Game.GameStates.Paused then
+
+		love.graphics.translate(-1 * graphicsTranslation.x, -1 * graphicsTranslation.y)
+		map:draw()
+		player:draw()
+		love.graphics.translate(graphicsTranslation.x, graphicsTranslation.y)
+		pauseGui:draw()
 	end
 end
 
@@ -129,8 +147,20 @@ function love.keypressed(key)
 			moveGraphics = player:move(0, 1)
 		end
 
+		if key == 'p' then
+			Game:swapState(Game.GameStates.Paused)
+		end
+
 		graphicsTranslation.x = graphicsTranslation.x + moveGraphics.x
 		graphicsTranslation.y = graphicsTranslation.y + moveGraphics.y
+
+	elseif Game.gameState == Game.GameStates.Paused then
+
+		if key == 'p' then
+			Game:swapState(Game.GameStates.Playing)
+		elseif key == 'm' then
+			Game:swapState(Game.GameStates.MainMenu)
+		end
 	end
 end
 
@@ -140,6 +170,8 @@ love.mousepressed = function(x, y, button)
 		mainMenuGui:mousepress(x, y, button)
 	elseif Game.gameState == Game.GameStates.Playing then
 		gameGui:mousepress(x, y, button)
+	elseif Game.gameState == Game.GameStates.Paused then
+		pauseGui:mousepress(x, y, button)
 	end
 end
 
@@ -148,6 +180,8 @@ love.mousereleased = function(x, y, button)
 		mainMenuGui:mouserelease(x, y, button)
 	elseif Game.gameState == Game.GameStates.Playing then
 		gameGui:mouserelease(x, y, button)
+	elseif Game.gameState == Game.GameStates.Paused then
+		pauseGui:mouserelease(x, y, button)
 	end
 end
 
@@ -156,6 +190,8 @@ love.wheelmoved = function(x, y)
 		mainMenuGui:mousewheel(x, y)
 	elseif Game.gameState == Game.GameStates.Playing then
 		gameGui:mousewheel(x, y)
+	elseif Game.gameState == Game.GameStates.Paused then
+		pauseGui:mousewheel(x, y)
 	end
 end
 -- [=[ ================= MOUSE EVENTS END ================= ]=]

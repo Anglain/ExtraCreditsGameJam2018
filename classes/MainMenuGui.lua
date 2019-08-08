@@ -30,7 +30,7 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 	mainMenuGui.creditsGui.style.font = refFontTable['PTMonoRegularBig']
 
 	--[[ ================================== ]]
-	--[[ ==== Main Menu Gui Parameters ==== ]]
+	--[[ ===== Main Menu Gui Elements ===== ]]
 	--[[ ================================== ]]
 	local mainButtonW, mainButtonH = mainMenuGui.gui.style.unit * 2.5, mainMenuGui.gui.style.unit
 	local playButton = mainMenuGui.gui:button('Play', {
@@ -68,7 +68,7 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 
 
 	--[[ ================================== ]]
-	--[[ ===== Credits Gui Parameters ===== ]]
+	--[[ ====== Credits Gui Elements ====== ]]
 	--[[ ================================== ]]
 	local backFromCreditsButton = mainMenuGui.creditsGui:button('Back', {
 		x = Game.SCREEN_SIZE * 0.5 - mainButtonW * 0.5,
@@ -82,7 +82,7 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 	end
 
 	local creditsText = 'Game design - ...\nArt - ...\nProgramming - ...'
-	local creditsTextObj = mainMenuGui.creditsGui:text(creditsText, {
+	local creditsTextObj = mainMenuGui.creditsGui:typetext(creditsText, {
 		x = Game.SCREEN_SIZE * 0.5 - mainButtonW * 1.5,
 		y = backFromCreditsButton.pos.y + mainButtonH + mainMenuGui.gui.style.gapSize,
 		w = mainButtonW * 3
