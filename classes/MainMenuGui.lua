@@ -66,12 +66,13 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 		love.event.quit()
 	end
 
+
 	--[[ ================================== ]]
 	--[[ ===== Credits Gui Parameters ===== ]]
 	--[[ ================================== ]]
 	local backFromCreditsButton = mainMenuGui.creditsGui:button('Back', {
 		x = Game.SCREEN_SIZE * 0.5 - mainButtonW * 0.5,
-		y = Game.SCREEN_SIZE * 0.5 - mainButtonH * 0.5,
+		y = Game.SCREEN_SIZE * 0.5 - mainButtonH * 3,
 		w = mainButtonW,
 		h = mainButtonH
 	})
@@ -80,7 +81,17 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 		mainMenuGui.state = mainMenuGui.States.Menu
 	end
 
+	local creditsText = 'Game design - ...\nArt - ...\nProgramming - ...'
+	local creditsTextObj = mainMenuGui.creditsGui:text(creditsText, {
+		x = Game.SCREEN_SIZE * 0.5 - mainButtonW * 1.5,
+		y = backFromCreditsButton.pos.y + mainButtonH + mainMenuGui.gui.style.gapSize,
+		w = mainButtonW * 3
+	})
 
+
+	--[[ ================================== ]]
+	--[[ ======= Essential Functions ====== ]]
+	--[[ ================================== ]]
 	function mainMenuGui:update(dt)
 		if mainMenuGui.state == mainMenuGui.States.Menu then
 			mainMenuGui.gui:update(dt)
