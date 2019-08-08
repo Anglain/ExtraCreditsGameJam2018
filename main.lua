@@ -21,12 +21,13 @@ gspot = require('libs/Gspot')
 local Game = {
 	TILE_SIZE = 64,
 	MAP_TILES = 10,
-	MAP_SIZE = 0, -- initialization under the Game table
+	MAP_SIZE = 0, -- initialization is under the Game table
 	SCREEN_SIZE = 640,
 
 	GameStates = {
 		MainMenu = 'MainMenu',
-		Playing = 'Playing'
+		Playing = 'Playing',
+		Paused = 'Paused'
 	}
 }
 Game.MAP_SIZE = Game.TILE_SIZE * Game.MAP_TILES

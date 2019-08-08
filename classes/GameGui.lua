@@ -12,7 +12,7 @@ GameGui.__index = GameGui
 
 
 function GameGui:new(refGspot, refFontTable, Game)
-	gameGui = {
+	local gameGui = {
 		gui = refGspot()
 	}
 
@@ -27,15 +27,17 @@ function GameGui:new(refGspot, refFontTable, Game)
 		h = mainMenuButH
 	})
 	mainMenuButton.click = function(this)
-		print('CLICK')
+		print('--- Main menu button clicked [GAME_GUI]')
 		Game:swapState(Game.GameStates.MainMenu)
 	end
+
 
 	function gameGui:update(dt)
 		gameGui.gui:update(dt)
 	end
 
 	function gameGui:draw()
+
 		gameGui.gui:draw()
 	end
 

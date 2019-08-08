@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"newFont",
+				"love.graphics.newFont"
+			],
+			[
 				"mainMenu",
 				"mainMenuGui"
 			],
@@ -175,7 +179,16 @@
 			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 4259,
+				"buffer_size": 4312,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "conf.lua",
+			"settings":
+			{
+				"buffer_size": 201,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -184,7 +197,7 @@
 			"file": "classes/MainMenuGui.lua",
 			"settings":
 			{
-				"buffer_size": 271,
+				"buffer_size": 1439,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -193,7 +206,7 @@
 			"file": "classes/GameGui.lua",
 			"settings":
 			{
-				"buffer_size": 239,
+				"buffer_size": 1019,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -203,6 +216,15 @@
 			"settings":
 			{
 				"buffer_size": 1181,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "libs/Gspot.lua",
+			"settings":
+			{
+				"buffer_size": 45475,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -301,8 +323,8 @@
 	],
 	"file_history":
 	[
-		"/home/anglain/Storage/Coding/Love_Projects/Saya/classes/Player.lua",
 		"/home/anglain/Storage/Coding/Love_Projects/Saya/conf.lua",
+		"/home/anglain/Storage/Coding/Love_Projects/Saya/classes/Player.lua",
 		"/home/anglain/Storage/Coding/Love_Projects/Saya/libs/Gspot.lua",
 		"/home/anglain/Storage/Coding/Love_Projects/LifeSupportMission/Player.lua",
 		"/home/anglain/Storage/Coding/Love_Projects/ProcGenPractice/rooms/simpleRoom.lua",
@@ -393,7 +415,7 @@
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 39.0
 	},
 	"find_in_files":
 	{
@@ -407,6 +429,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"playButtonH",
+			"playButtonW",
+			"drawshape",
+			"button",
+			"lgprint",
+			"PTMonoRegularSmall",
+			"GameStates",
+			"local",
+			"gameState",
 			"mainMenuGui",
 			"MainMenuGui",
 			"TILE_SIZE * MAP_TILES",
@@ -455,24 +486,29 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4259,
+						"buffer_size": 4312,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								895,
-								895
+								855,
+								855
 							]
 						],
 						"settings":
 						{
 							"apply_syntax_touched": true,
-							"syntax": "Packages/Lua Love/LuaLove.tmLanguage"
+							"rulers":
+							[
+								100
+							],
+							"syntax": "Packages/Lua Love/LuaLove.tmLanguage",
+							"wrap_width": 100
 						},
 						"translation.x": 0.0,
-						"translation.y": 454.0,
+						"translation.y": 196.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -480,19 +516,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "classes/MainMenuGui.lua",
+					"file": "conf.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 271,
+						"buffer_size": 201,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								187,
-								187
+								197,
+								197
 							]
 						],
 						"settings":
@@ -509,31 +545,70 @@
 				},
 				{
 					"buffer": 2,
-					"file": "classes/GameGui.lua",
+					"file": "classes/MainMenuGui.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 239,
+						"buffer_size": 1439,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								167,
-								167
+								738,
+								738
 							]
 						],
 						"settings":
 						{
 							"apply_syntax_touched": true,
-							"syntax": "Packages/Lua Love/LuaLove.tmLanguage"
+							"rulers":
+							[
+								100
+							],
+							"syntax": "Packages/Lua Love/LuaLove.tmLanguage",
+							"wrap_width": 100
+						},
+						"translation.x": 0.0,
+						"translation.y": 228.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "classes/GameGui.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1019,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								253,
+								253
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"rulers":
+							[
+								100
+							],
+							"syntax": "Packages/Lua Love/LuaLove.tmLanguage",
+							"wrap_width": 100
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -543,7 +618,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "classes/Map.lua",
 					"semi_transient": false,
 					"settings":
@@ -555,8 +630,8 @@
 						"selection":
 						[
 							[
-								68,
-								68
+								347,
+								347
 							]
 						],
 						"settings":
@@ -574,24 +649,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "/home/anglain/Storage/Coding/Love_Projects/gspot/main.lua",
+					"buffer": 5,
+					"file": "libs/Gspot.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12112,
+						"buffer_size": 45475,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2692,
-								2692
+								17729,
+								17729
 							]
 						],
 						"settings":
@@ -606,10 +681,45 @@
 							"wrap_width": 120
 						},
 						"translation.x": 0.0,
-						"translation.y": 215.0,
+						"translation.y": 7650.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/anglain/Storage/Coding/Love_Projects/gspot/main.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12112,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5450,
+								5450
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"rulers":
+							[
+								120
+							],
+							"syntax": "Packages/Lua Love/LuaLove.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"wrap_width": 120
+						},
+						"translation.x": 0.0,
+						"translation.y": 833.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -643,7 +753,7 @@
 		"cols":
 		[
 			0.0,
-			0.50329065596,
+			0.481257155289,
 			1.0
 		],
 		"rows":
@@ -799,7 +909,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 148.0,
+	"side_bar_width": 180.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
