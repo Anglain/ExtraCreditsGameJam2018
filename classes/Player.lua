@@ -10,11 +10,6 @@ Player.__index = Player
 
 
 
--- [=[ ========== LOCAL VARIABLES ========== ]=]
--- [=[ ======== LOCAL VARIABLES END ======== ]=]
-
-
-
 -- [=[ ========== LOCAL CONSTANTS ========== ]=]
 local Directions = {
 	up = 'up',
@@ -53,9 +48,6 @@ function Player:new(pos_x, pos_y, tileSize, mapRef)
 	end
 
 	function player:move(dx, dy)
-		-- ===================================================================================================
-		-- ============== TODO _____ MAKE PLAYER MOVEMENT CENTERED AROUND THE CAMERA _____ TODO ==============
-		-- ===================================================================================================
 
 		local newPos = {
 			x = player.pos.x + dx,

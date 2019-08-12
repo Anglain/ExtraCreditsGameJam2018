@@ -40,7 +40,7 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 		h = mainButtonH
 	})
 	playButton.click = function(this)
-		print('--- Play button clicked [MAIN_MENU_GUI]')
+		if Game.DEBUG then print('--- Play button clicked [MAIN_MENU_GUI]') end
 		Game:swapState(Game.GameStates.Playing)
 	end
 
@@ -51,7 +51,7 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 		h = mainButtonH
 	})
 	creditsButton.click = function(this)
-		print('--- Credits button clicked [MAIN_MENU_GUI]')
+		if Game.DEBUG then print('--- Credits button clicked [MAIN_MENU_GUI]') end
 		mainMenuGui.state = mainMenuGui.States.Credits
 	end
 
@@ -62,7 +62,7 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 		h = mainButtonH
 	})
 	exitButton.click = function(this)
-		print('--- Exit button clicked [MAIN_MENU_GUI]')
+		if Game.DEBUG then print('--- Exit button clicked [MAIN_MENU_GUI]') end
 		love.event.quit()
 	end
 
@@ -77,7 +77,7 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 		h = mainButtonH
 	})
 	backFromCreditsButton.click = function(this)
-		print('--- Back from credits button clicked [MAIN_MENU_GUI]')
+		if Game.DEBUG then print('--- Back from credits button clicked [MAIN_MENU_GUI]') end
 		mainMenuGui.state = mainMenuGui.States.Menu
 	end
 

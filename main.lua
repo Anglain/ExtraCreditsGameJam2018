@@ -20,6 +20,7 @@ gspot = require('libs/Gspot')
 
 -- [=[ ========== LOCAL VARIABLES ========== ]=]
 local Game = {
+	DEBUG = true,
 	TILE_SIZE = 64,
 	MAP_TILES = 10,
 	MAP_SIZE = 0, -- initialization is under the Game table
@@ -200,7 +201,7 @@ end
 -- [=[ ================== OTHER FUNCTIONS ================== ]=]
 
 function Game:swapState(state)
-	print('Changed state to ' .. state)
+	if Game.DEBUG then print('Changed state to ' .. state) end
 	Game.gameState = state
 end
 

@@ -10,10 +10,6 @@ Map.__index = Map
 
 
 
--- [=[ ========== LOCAL VARIABLES ========== ]=]
--- [=[ ======== LOCAL VARIABLES END ======== ]=]
-
-
 -- [=[ ========== LOCAL CONSTANTS ========== ]=]
 local MapStates = {
 	World = 'world',

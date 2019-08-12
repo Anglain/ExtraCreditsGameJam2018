@@ -32,7 +32,7 @@ function GameGui:new(refGspot, refFontTable, Game)
 		h = mainMenuButH
 	})
 	mainMenuButton.click = function(this)
-		print('--- Main menu button clicked [GAME_GUI]')
+		if Game.DEBUG then print('--- Main menu button clicked [GAME_GUI]') end
 		Game:swapState(Game.GameStates.MainMenu)
 	end	
 
