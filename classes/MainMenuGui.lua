@@ -36,11 +36,15 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 	local mainButtonW, mainButtonH = mainMenuGui.gui.style.unit * 2.5, mainMenuGui.gui.style.unit
 	local playButton = mainMenuGui.gui:imgbutton(nil, {
 		x = Game.SCREEN_SIZE * 0.5 - sayaImage:getWidth() * 0.5,
-		y = Game.SCREEN_SIZE * 0.5 - sayaImage:getHeight() * 0.5
-	}, nil, sayaImage)
-	playButton.style.default = {0, 0, 0, 0}
-	playButton.style.hilite = {0.7, 0.7, 0.7, 1}
-	
+		y = Game.SCREEN_SIZE * 0.5 - sayaImage:getHeight() * 0.5,
+		w = sayaImage:getWidth(),
+		h = sayaImage:getHeight()
+	}, nil, sayaImage, false)
+	local defColor = playButton.style.default
+	local highlightColor = playButton.style.hilite
+	playButton.style.default = highlightColor
+	playButton.style.hilite = defColor
+
 	playButton.click = function(this)
 		if Game.DEBUG then print('--- Play button clicked [MAIN_MENU_GUI]') end
 		Game:swapState(Game.GameStates.Playing)

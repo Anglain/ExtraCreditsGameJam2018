@@ -860,7 +860,13 @@ Gspot.button = {
 			if this == this.Gspot.mousein then setColor(this.style.hilite)
 			else setColor(this.style.default) end
 		end
-		this:drawshape(pos)
+		
+		if this.img and this.drawBg then
+			this:drawshape(pos)
+		elseif not this.img then
+			this:drawshape(pos)
+		end
+
 		setColor(this.style.labelfg or this.style.fg)
 		if this.shape == 'circle' then
 			if this.img then this:drawimg(pos) end
@@ -883,9 +889,10 @@ Gspot.button = {
 setmetatable(Gspot.button, {__index = Gspot.util, __call = Gspot.button.load})
 
 Gspot.imgbutton = {
-	load = function(this, Gspot, label, pos, parent, img)
+	load = function(this, Gspot, label, pos, parent, img, drawBg)
 		local element = Gspot:button(label, pos, parent)
 		element:setimage(img)
+		element.drawBg = drawBg
 		return Gspot:add(element)
 	end,
 }
