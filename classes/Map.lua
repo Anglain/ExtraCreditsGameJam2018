@@ -27,13 +27,26 @@ function Map:new(tileSize, tilesNumber)
 	local currentColor = {}
 	local mapSpritesheet = love.graphics.newImage('images/SayaTestSpritesheet.png')
 	local quads = {
-		GROUND = love.graphics.newQuad(0, 0, tileSize, tileSize, mapSpritesheet:getDimensions())
+		GROUND = love.graphics.newQuad(0, 0, tileSize, tileSize, mapSpritesheet:getDimensions()),
+		EMPTY = love.graphics.newQuad(tileSize, 0, tileSize, tileSize, mapSpritesheet:getDimensions()),
 	}
 
 	local map = {
 		tileSize = tileSize,
 		tilesNumber = tilesNumber,
-		color = {206/255, 214/255, 245/255, 1}
+		color = {206/255, 214/255, 245/255, 1},
+		tiles = {
+			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 1, 1, 0, 0, 0, 0,
+			0, 0, 0, 0, 1, 1, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+		}
 	}
 
 	function map:update(dt)
@@ -46,7 +59,13 @@ function Map:new(tileSize, tilesNumber)
 		love.graphics.rectangle('fill', 0, 0, map.tileSize * map.tilesNumber, map.tileSize * map.tilesNumber)
 		for i = 1,map.tilesNumber do
 			for j = 1, map.tilesNumber do
-				love.graphics.draw(mapSpritesheet, quads.GROUND, (i-1) * map.tileSize, (j-1) * map.tileSize)
+				local workQuad
+				if map.tiles[(i-1)*map.tilesNumber + j] == 0 then
+					workQuad = quads.GROUND
+				elseif map.tiles[(i-1)*map.tilesNumber + j] == 1 then
+					workQuad = quads.EMPTY
+				end
+				love.graphics.draw(mapSpritesheet, workQuad, (i-1) * map.tileSize, (j-1) * map.tileSize)
 			end
 		end
 		love.graphics.setColor(currentColor)
