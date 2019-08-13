@@ -531,7 +531,7 @@ Gspot.util = {
 
 	drawimg = function(this, pos)
 		local r, g, b, a = love.graphics.getColor()
-		setColor(255, 255, 255, 255)
+		--setColor(255, 255, 255, 255)
 		love.graphics.draw(this.img, (pos.x + (pos.w / 2)) - (this.img:getWidth()) / 2, (pos.y + (pos.h / 2)) - (this.img:getHeight() / 2))
 		love.graphics.setColor(r, g, b, a)
 	end,
@@ -868,12 +868,10 @@ Gspot.button = {
 		else
 			if this.img then
 				local r,g,b,a = love.graphics.getColor()
-				if this.parent and this.value == this.parent.value then
-					if this == this.Gspot.mousein then setColor(this.style.focus)
-					else setColor(this.style.hilite) end
+				if this == this.Gspot.mousein then
+					love.graphics.setColor(this.style.hilite)
 				else
-					if this == this.Gspot.mousein then setColor(this.style.hilite)
-					else setColor(this.style.default) end
+					love.graphics.setColor(1,1,1,1)
 				end
 				this:drawimg(pos)
 				love.graphics.setColor(r,g,b,a)
