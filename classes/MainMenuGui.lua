@@ -52,7 +52,7 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 
 	local creditsButton = mainMenuGui.gui:button('Credits', {
 		x = Game.SCREEN_SIZE * 0.5 - mainButtonW * 0.5,
-		y = playButton.pos.y + mainButtonH + mainMenuGui.gui.style.gapSize,
+		y = playButton.pos.y + mainButtonH + mainMenuGui.gui.style.gapSize * 2,
 		w = mainButtonW,
 		h = mainButtonH
 	})
