@@ -860,7 +860,7 @@ Gspot.button = {
 			if this == this.Gspot.mousein then setColor(this.style.hilite)
 			else setColor(this.style.default) end
 		end
-		
+		-- Customly added - draw the shape with the imgbutton only if it is needed
 		if this.img and this.drawBg then
 			this:drawshape(pos)
 		elseif not this.img then
@@ -872,6 +872,8 @@ Gspot.button = {
 			if this.img then this:drawimg(pos) end
 			if this.label then lgprint(this.label, (pos.x + pos.r) - (this.style.font:getWidth(this.label) / 2), (this.img and (pos.y + (pos.r * 2)) + ((this.style.unit - this.style.font:getHeight()) / 2)) or (pos.y + pos.r) - (this.style.font:getHeight() / 2)) end
 		else
+			-- Customly added - the image in imgbutton is affected by highlight and default
+			-- colors of the button - WOW!
 			if this.img then
 				local r,g,b,a = love.graphics.getColor()
 				if this == this.Gspot.mousein then
