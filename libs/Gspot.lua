@@ -866,7 +866,18 @@ Gspot.button = {
 			if this.img then this:drawimg(pos) end
 			if this.label then lgprint(this.label, (pos.x + pos.r) - (this.style.font:getWidth(this.label) / 2), (this.img and (pos.y + (pos.r * 2)) + ((this.style.unit - this.style.font:getHeight()) / 2)) or (pos.y + pos.r) - (this.style.font:getHeight() / 2)) end
 		else
-			if this.img then this:drawimg(pos) end
+			if this.img then
+				local r,g,b,a = love.graphics.getColor()
+				if this.parent and this.value == this.parent.value then
+					if this == this.Gspot.mousein then setColor(this.style.focus)
+					else setColor(this.style.hilite) end
+				else
+					if this == this.Gspot.mousein then setColor(this.style.hilite)
+					else setColor(this.style.default) end
+				end
+				this:drawimg(pos)
+				love.graphics.setColor(r,g,b,a)
+			end
 			if this.label then lgprint(this.label, (pos.x + (pos.w / 2)) - (this.style.font:getWidth(this.label) / 2), (this.img and pos.y + ((this.style.unit - this.style.font:getHeight()) / 2)) or (pos.y + (pos.h / 2)) - (this.style.font:getHeight() / 2)) end
 		end
 	end,

@@ -20,7 +20,7 @@ gspot = require('libs/Gspot')
 
 -- [=[ ========== LOCAL VARIABLES ========== ]=]
 local Game = {
-	DEBUG = true,
+	DEBUG = false,
 	TILE_SIZE = 64,
 	MAP_TILES = 10,
 	MAP_SIZE = 0, -- initialization is under the Game table
@@ -58,7 +58,7 @@ function love.load()
 	fontTable['PTMonoRegularSmall'] = love.graphics.newFont('fonts/PTMono-Regular.ttf', 12)
 
 	map = Map:new(Game.TILE_SIZE, Game.MAP_TILES)
-	player = Player:new(0, 0, Game.TILE_SIZE, map)
+	player = Player:new(0, 0, Game.TILE_SIZE, map, Game)
 	graphicsTranslation.x = graphicsTranslation.x - Game.SCREEN_SIZE * 0.5 + Game.TILE_SIZE * 0.5
 	graphicsTranslation.y = graphicsTranslation.y - Game.SCREEN_SIZE * 0.5 + Game.TILE_SIZE * 0.5
 

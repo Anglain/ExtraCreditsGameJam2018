@@ -32,13 +32,15 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 	--[[ ================================== ]]
 	--[[ ===== Main Menu Gui Elements ===== ]]
 	--[[ ================================== ]]
+	local sayaImage = love.graphics.newImage('images/Saya.png')
 	local mainButtonW, mainButtonH = mainMenuGui.gui.style.unit * 2.5, mainMenuGui.gui.style.unit
-	local playButton = mainMenuGui.gui:button('Play', {
-		x = Game.SCREEN_SIZE * 0.5 - mainButtonW * 0.5,
-		y = Game.SCREEN_SIZE * 0.5 - mainButtonH * 0.5,
-		w = mainButtonW,
-		h = mainButtonH
-	})
+	local playButton = mainMenuGui.gui:imgbutton(nil, {
+		x = Game.SCREEN_SIZE * 0.5 - sayaImage:getWidth() * 0.5,
+		y = Game.SCREEN_SIZE * 0.5 - sayaImage:getHeight() * 0.5
+	}, nil, sayaImage)
+	playButton.style.default = {0, 0, 0, 0}
+	playButton.style.hilite = {0.7, 0.7, 0.7, 1}
+	
 	playButton.click = function(this)
 		if Game.DEBUG then print('--- Play button clicked [MAIN_MENU_GUI]') end
 		Game:swapState(Game.GameStates.Playing)
