@@ -32,10 +32,24 @@ function Player:new(pos_x, pos_y, tileSize, mapRef, Game)
 		},
 		size = tileSize,
 		direction = Directions.down,
+		constraints = {
+			x = {
+				small,
+				big
+			},
+			y = {
+				small,
+				big
+			}
+		},
 		map = mapRef,
 		color = {145/255, 126/255, 100/255, 1},
 		img = love.graphics.newImage('images/Saya.png')
 	}
+	player.constraints.x.small = 0
+	player.constraints.x.big = player.map.tilesNumber - 1
+	player.constraints.y.small = 0
+	player.constraints.y.big = player.map.tilesNumber - 1
 
 	function player:update(dt)
 		--
@@ -62,8 +76,12 @@ function Player:new(pos_x, pos_y, tileSize, mapRef, Game)
 			if Game.DEBUG then print('Direction changed to ' .. newPos.dir .. '!') end
 		end
 
-		player.pos.x = (newPos.x >= 0 and ((newPos.x < player.map.tilesNumber and newPos.x) or player.map.tilesNumber - 1)) or 0
-		player.pos.y = (newPos.y >= 0 and ((newPos.y < player.map.tilesNumber and newPos.y) or player.map.tilesNumber - 1)) or 0
+		player.pos.x = (newPos.x >= player.constraints.x.small and 
+			((newPos.x <= player.constraints.x.big and newPos.x) 
+				or player.constraints.x.big)) or player.constraints.x.small
+		player.pos.y = (newPos.y >= player.constraints.y.small and 
+			((newPos.y <= player.constraints.y.big and newPos.y) 
+				or player.constraints.y.big)) or player.constraints.y.small
 		player.direction = newPos.dir
 
 		mapRef:movePlayer(player.pos.x, player.pos.y)
