@@ -9,20 +9,7 @@ Map = {}
 Map.__index = Map
 
 
-
--- [=[ ========== LOCAL CONSTANTS ========== ]=]
-local MapStates = {
-	World = 'world',
-	InBuilding = {
-		'inBuilding',
-		building = nil
-	}
-}
--- [=[ ======== LOCAL CONSTANTS END ======== ]=]
-
-
-
-function Map:new(tileSize, tilesNumber)
+function Map:new(tileSize, tilesNumber, Game)
 
 	local currentColor = {}
 	local mapSpritesheet = love.graphics.newImage('images/SayaTestSpritesheet.png')
@@ -35,17 +22,74 @@ function Map:new(tileSize, tilesNumber)
 		tileSize = tileSize,
 		tilesNumber = tilesNumber,
 		color = {206/255, 214/255, 245/255, 1},
+		playerPos = {
+			x = 0, y = 0
+		},
 		tiles = {
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 1, 1, 1, 0,
+			0, 0, 0, 0, 0, 0, 3, 1, 1, 0,
+			0, 0, 0, 0, 0, 0, 1, 1, 1, 0,
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-			0, 0, 0, 0, 1, 1, 0, 0, 0, 0,
-			0, 0, 0, 0, 1, 1, 0, 0, 0, 0,
-			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 1, 3, 1, 0, 0, 0, 0, 0, 0,
+			0, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+			0, 1, 1, 1, 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+		},
+		currentRoom = nil,
+		rooms = {
+			ROOM1 = 'room1',
+			ROOM2 = 'room2',
+			OUTSIDE = ''
+		},
+		room1 = { -- Parameters for one of the rooms
+			tiles = {
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
+				1, 1, 1, 1, 1, 1, 3, 0, 0, 1,
+				1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+			},
+			constraints = { -- These constraints need to be checked with <= and >= operators
+				x = {
+					small = 6,
+					big = 8
+				},
+				y = {
+					small = 1,
+					big = 3
+				}
+			}
+		},
+		room2 = {
+			tiles = {
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 0, 3, 0, 1, 1, 1, 1, 1, 1,
+				1, 0, 0, 0, 1, 1, 1, 1, 1, 1,
+				1, 0, 0, 0, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+			},
+			constraints = {
+				x = {
+					small = 1,
+					big = 3,
+				},
+				y = {
+					small = 5,
+					big = 7
+				}
+			}
 		}
 	}
 
@@ -54,21 +98,62 @@ function Map:new(tileSize, tilesNumber)
 	end
 
 	function map:draw()
+
+		local curTilemap
+
+		if checkIfInTheRoom() == map.rooms.ROOM1 then
+			currentRoom = map.rooms.ROOM1
+			curTilemap = map[currentRoom].tiles
+		elseif checkIfInTheRoom() == map.rooms.ROOM2 then
+			currentRoom = map.rooms.ROOM2
+			curTilemap = map[currentRoom].tiles
+		elseif checkIfInTheRoom() == map.rooms.OUTSIDE then
+			currentRoom = nil
+			curTilemap = map.tiles
+		end
+
 		currentColor[1], currentColor[2], currentColor[3], currentColor[4] = love.graphics.getColor()
 		love.graphics.setColor(map.color)
 		love.graphics.rectangle('fill', 0, 0, map.tileSize * map.tilesNumber, map.tileSize * map.tilesNumber)
+		love.graphics.setColor(1, 1, 1, 1)
 		for i = 1,map.tilesNumber do
 			for j = 1, map.tilesNumber do
 				local workQuad
-				if map.tiles[(i-1)*map.tilesNumber + j] == 0 then
+				if curTilemap[(i-1)*map.tilesNumber + j] == 0 then
 					workQuad = quads.GROUND
-				elseif map.tiles[(i-1)*map.tilesNumber + j] == 1 then
+				elseif curTilemap[(i-1)*map.tilesNumber + j] == 3 then
+					love.graphics.setColor(1, 1, 0, 1)
+					workQuad = quads.EMPTY
+				elseif curTilemap[(i-1)*map.tilesNumber + j] == 1 then
 					workQuad = quads.EMPTY
 				end
-				love.graphics.draw(mapSpritesheet, workQuad, (i-1) * map.tileSize, (j-1) * map.tileSize)
+				love.graphics.draw(mapSpritesheet, workQuad, (j-1) * map.tileSize, (i-1) * map.tileSize)
+				love.graphics.setColor(1, 1, 1, 1)
 			end
 		end
 		love.graphics.setColor(currentColor)
+	end
+
+	function map:movePlayer(x, y)
+		map.playerPos.x = x
+		map.playerPos.y = y
+		if Game.DEBUG then print(x, y) end
+	end
+
+	function checkIfInTheRoom()
+		if map.playerPos.x >= map.room1.constraints.x.small and
+		   map.playerPos.x <= map.room1.constraints.x.big and
+		   map.playerPos.y >= map.room1.constraints.y.small and
+		   map.playerPos.y <= map.room1.constraints.y.big then
+		   	return map.rooms.ROOM1
+	   	elseif map.playerPos.x >= map.room2.constraints.x.small and
+		   map.playerPos.x <= map.room2.constraints.x.big and
+		   map.playerPos.y >= map.room2.constraints.y.small and
+		   map.playerPos.y <= map.room2.constraints.y.big then
+		   	return map.rooms.ROOM2
+		else
+	   		return map.rooms.OUTSIDE
+	   	end
 	end
 
 	return map

@@ -66,6 +66,7 @@ function Player:new(pos_x, pos_y, tileSize, mapRef, Game)
 		player.pos.y = (newPos.y >= 0 and ((newPos.y < player.map.tilesNumber and newPos.y) or player.map.tilesNumber - 1)) or 0
 		player.direction = newPos.dir
 
+		mapRef:movePlayer(player.pos.x, player.pos.y)
 		-- Returns move vector multiplied by tile size (for camera translation)
 		return {
 			x = (newPos.x >= 0 and ((newPos.x < player.map.tilesNumber and dx * player.size) or 0)) or 0,

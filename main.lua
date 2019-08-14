@@ -57,7 +57,7 @@ function love.load()
 	fontTable['PTMonoRegularBig'] = love.graphics.newFont('fonts/PTMono-Regular.ttf', 22)
 	fontTable['PTMonoRegularSmall'] = love.graphics.newFont('fonts/PTMono-Regular.ttf', 12)
 
-	map = Map:new(Game.TILE_SIZE, Game.MAP_TILES)
+	map = Map:new(Game.TILE_SIZE, Game.MAP_TILES, Game)
 	player = Player:new(0, 0, Game.TILE_SIZE, map, Game)
 	graphicsTranslation.x = graphicsTranslation.x - Game.SCREEN_SIZE * 0.5 + Game.TILE_SIZE * 0.5
 	graphicsTranslation.y = graphicsTranslation.y - Game.SCREEN_SIZE * 0.5 + Game.TILE_SIZE * 0.5

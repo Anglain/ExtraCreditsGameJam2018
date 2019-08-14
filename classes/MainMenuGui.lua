@@ -39,7 +39,7 @@ function MainMenuGui:new(refGspot, refFontTable, Game)
 		y = Game.SCREEN_SIZE * 0.5 - sayaImage:getHeight() * 0.5,
 		w = sayaImage:getWidth(),
 		h = sayaImage:getHeight()
-	}, nil, sayaImage, false)
+	}, nil, sayaImage, true)
 
 	-- Reverts colors to make hilight darken the image
 	local defColor = playButton.style.default
