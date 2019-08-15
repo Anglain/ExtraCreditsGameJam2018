@@ -110,21 +110,19 @@ function Map:new(tileSize, tilesNumber, Game)
 
 	function map:draw()
 
-		print('R1' .. map.room1)
-		print(map['room1'])
-		print(map[map.rooms.ROOM1])
+		local curTilemap
 
 		if checkIfInTheRoom() == map.rooms.ROOM1 then
 			map.currentRoom = map.rooms.ROOM1
-			map.currentTilemap = map[currentRoom].tiles
+			map.currentTilemap = map[map.currentRoom].tiles
 		elseif checkIfInTheRoom() == map.rooms.ROOM2 then
 			map.currentRoom = map.rooms.ROOM2
-			map.currentTilemap = map[currentRoom].tiles
+			map.currentTilemap = map[map.currentRoom].tiles
 		elseif checkIfInTheRoom() == map.rooms.OUTSIDE then
 			map.currentRoom = nil
 			map.currentTilemap = map.tiles
 		end
-
+		
 		currentColor[1], currentColor[2], currentColor[3], currentColor[4] = love.graphics.getColor()
 		love.graphics.setColor(map.color)
 		love.graphics.rectangle('fill', 0, 0, map.tileSize * map.tilesNumber, map.tileSize * map.tilesNumber)
