@@ -38,6 +38,7 @@ function Map:new(tileSize, tilesNumber, Game)
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 		},
 		currentRoom = nil,
+		currentTilemap = nil,
 		rooms = {
 			ROOM1 = 'room1',
 			ROOM2 = 'room2',
@@ -109,17 +110,19 @@ function Map:new(tileSize, tilesNumber, Game)
 
 	function map:draw()
 
-		local curTilemap
+		print('R1' .. map.room1)
+		print(map['room1'])
+		print(map[map.rooms.ROOM1])
 
 		if checkIfInTheRoom() == map.rooms.ROOM1 then
-			currentRoom = map.rooms.ROOM1
-			curTilemap = map[currentRoom].tiles
+			map.currentRoom = map.rooms.ROOM1
+			map.currentTilemap = map[currentRoom].tiles
 		elseif checkIfInTheRoom() == map.rooms.ROOM2 then
-			currentRoom = map.rooms.ROOM2
-			curTilemap = map[currentRoom].tiles
+			map.currentRoom = map.rooms.ROOM2
+			map.currentTilemap = map[currentRoom].tiles
 		elseif checkIfInTheRoom() == map.rooms.OUTSIDE then
-			currentRoom = nil
-			curTilemap = map.tiles
+			map.currentRoom = nil
+			map.currentTilemap = map.tiles
 		end
 
 		currentColor[1], currentColor[2], currentColor[3], currentColor[4] = love.graphics.getColor()
@@ -129,12 +132,12 @@ function Map:new(tileSize, tilesNumber, Game)
 		for i = 1,map.tilesNumber do
 			for j = 1, map.tilesNumber do
 				local workQuad
-				if curTilemap[(i-1)*map.tilesNumber + j] == 0 then
+				if map.currentTilemap[(i-1)*map.tilesNumber + j] == 0 then
 					workQuad = quads.GROUND
-				elseif curTilemap[(i-1)*map.tilesNumber + j] == 3 then
+				elseif map.currentTilemap[(i-1)*map.tilesNumber + j] == 3 then
 					love.graphics.setColor(1, 1, 0, 1)
 					workQuad = quads.EMPTY
-				elseif curTilemap[(i-1)*map.tilesNumber + j] == 1 then
+				elseif map.currentTilemap[(i-1)*map.tilesNumber + j] == 1 then
 					workQuad = quads.EMPTY
 				end
 				love.graphics.draw(mapSpritesheet, workQuad, (j-1) * map.tileSize, (i-1) * map.tileSize)
@@ -173,6 +176,20 @@ function Map:new(tileSize, tilesNumber, Game)
 		else
 	   		return map.rooms.OUTSIDE
 	   	end
+	end
+
+	function map:isNextTileWalkable(x, y, dir, tilemap)
+		if dir == 'up' then
+			if tilemap[(y-1)*map.tilesNumber + x] == tilemap[(y-1)*map.tilesNumber + x] then
+				return true
+			end
+		elseif dir == 'down' then
+
+		elseif dir == 'left' then
+
+		elseif dir == 'right' then
+
+		end
 	end
 
 	return map
