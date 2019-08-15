@@ -65,6 +65,11 @@ function Map:new(tileSize, tilesNumber, Game)
 					small = 1,
 					big = 3
 				}
+			},
+			exit = {
+				x = 6,
+				y = 2,
+				dir = 'left'
 			}
 		},
 		room2 = {
@@ -89,6 +94,11 @@ function Map:new(tileSize, tilesNumber, Game)
 					small = 5,
 					big = 7
 				}
+			},
+			exit = {
+				x = 2,
+				y = 5,
+				dir = 'up'
 			}
 		}
 	}
@@ -137,7 +147,16 @@ function Map:new(tileSize, tilesNumber, Game)
 	function map:movePlayer(x, y)
 		map.playerPos.x = x
 		map.playerPos.y = y
+
 		if Game.DEBUG then print(x, y) end
+
+		if checkIfInTheRoom() == map.rooms.ROOM1 then
+			return map.room1.constraints, map.room1.exit
+		elseif checkIfInTheRoom() == map.rooms.ROOM2 then
+			return map.room2.constraints, map.room2.exit
+		else
+			return nil, nil
+		end
 	end
 
 	function checkIfInTheRoom()
