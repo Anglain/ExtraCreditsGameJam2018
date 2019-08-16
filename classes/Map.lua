@@ -122,26 +122,31 @@ function Map:new(tileSize, tilesNumber, Game)
 			map.currentRoom = nil
 			map.currentTilemap = map.tiles
 		end
-		
+
 		currentColor[1], currentColor[2], currentColor[3], currentColor[4] = love.graphics.getColor()
 		love.graphics.setColor(map.color)
 		love.graphics.rectangle('fill', 0, 0, map.tileSize * map.tilesNumber, map.tileSize * map.tilesNumber)
 		love.graphics.setColor(1, 1, 1, 1)
+
 		for i = 1,map.tilesNumber do
 			for j = 1, map.tilesNumber do
+
 				local workQuad
-				if map.currentTilemap[(i-1)*map.tilesNumber + j] == 0 then
+
+				if map.currentTilemap[(i-1) * map.tilesNumber + j] == 0 then
 					workQuad = quads.GROUND
-				elseif map.currentTilemap[(i-1)*map.tilesNumber + j] == 3 then
+				elseif map.currentTilemap[(i-1) * map.tilesNumber + j] == 3 then
 					love.graphics.setColor(1, 1, 0, 1)
 					workQuad = quads.EMPTY
-				elseif map.currentTilemap[(i-1)*map.tilesNumber + j] == 1 then
+				elseif map.currentTilemap[(i-1) * map.tilesNumber + j] == 1 then
 					workQuad = quads.EMPTY
 				end
+
 				love.graphics.draw(mapSpritesheet, workQuad, (j-1) * map.tileSize, (i-1) * map.tileSize)
 				love.graphics.setColor(1, 1, 1, 1)
 			end
 		end
+
 		love.graphics.setColor(currentColor)
 	end
 
@@ -176,18 +181,31 @@ function Map:new(tileSize, tilesNumber, Game)
 	   	end
 	end
 
-	function map:isNextTileWalkable(x, y, dir, tilemap)
-		if dir == 'up' then
-			if tilemap[(y-1)*map.tilesNumber + x] == tilemap[(y-1)*map.tilesNumber + x] then
+	-- Current tile    tilemap[(y-1) * map.tilesNumber + x]
+	function map:nextTileIsWalkable(x, y, dir, tilemap)
+		if dir == 'up' and y-2 >= 0 then
+			if tilemap[(y-2) * map.tilesNumber + x] == 3 or 
+				tilemap[(y-2) * map.tilesNumber + x] == 0 then
 				return true
 			end
-		elseif dir == 'down' then
-
+		elseif dir == 'down' and y <= map.tilesNumber then
+			if tilemap[y * map.tilesNumber + x] == 3 or 
+				tilemap[y * map.tilesNumber + x] == 0 then
+				return true
+			end
 		elseif dir == 'left' then
-
+			if tilemap[(y-1) * map.tilesNumber + x - 1] == 3 or 
+				tilemap[(y-1) * map.tilesNumber + x - 1] == 0 then
+				return true
+			end
 		elseif dir == 'right' then
-
+			if tilemap[(y-1) * map.tilesNumber + x + 1] == 3 or 
+				tilemap[(y-1) * map.tilesNumber + x + 1] == 0 then
+				return true
+			end
 		end
+
+		return false
 	end
 
 	return map

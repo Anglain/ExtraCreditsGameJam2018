@@ -21,7 +21,7 @@ local Directions = {
 
 
 
-function Player:new(pos_x, pos_y, tileSize, mapRef, Game)
+function Player:new(pos_x, pos_y, tileSize, Map, Game)
 
 	local currentColor = {}
 
@@ -42,7 +42,7 @@ function Player:new(pos_x, pos_y, tileSize, mapRef, Game)
 				big
 			}
 		},
-		map = mapRef,
+		map = Map,
 		color = {145/255, 126/255, 100/255, 1},
 		img = love.graphics.newImage('images/Saya.png')
 	}
@@ -80,9 +80,6 @@ function Player:new(pos_x, pos_y, tileSize, mapRef, Game)
 
 		-- If in the room and goes to the exit - unlock the room constraints
 		if player.constraints.exit then
-			print('player.pos.x == exit.x     >>=>>    ' .. player.pos.x == player.constraints.exit.x)
-			print('player.pos.y == exit.y     >>=>>    ' .. player.pos.y == player.constraints.exit.y)
-			print('newPos.dir == exit.dir     >>=>>    ' .. newPos.dir == player.constraints.exit.dir)
 			if player.pos.x == player.constraints.exit.x and 
 				player.pos.y == player.constraints.exit.y and 
 				newPos.dir == player.constraints.exit.dir then
@@ -91,16 +88,38 @@ function Player:new(pos_x, pos_y, tileSize, mapRef, Game)
 		end
 
 		-- Setting new player position depending on the constraints
-		player.pos.x = (newPos.x >= player.constraints.x.small and 
-			((newPos.x <= player.constraints.x.big and newPos.x) 
-				or player.constraints.x.big)) or player.constraints.x.small
-		player.pos.y = (newPos.y >= player.constraints.y.small and 
-			((newPos.y <= player.constraints.y.big and newPos.y) 
-				or player.constraints.y.big)) or player.constraints.y.small
+		if newPos.x >= player.constraints.x.small and newPos.x <= player.constraints.x.big then
+			if player.map:nextTileIsWalkable(player.pos.x,
+											 player.pos.y,
+											 newPos.dir,
+											 player.map.currentTilemap) then
+				player.pos.x = newPos.x
+			end
+		elseif newPos.x > player.constraints.x.big then
+			player.pos.x = player.constraints.x.big
+		elseif newPos.x < player.constraints.x.small then
+			player.pos.x = player.constraints.x.small
+		end
+
+		if newPos.y >= player.constraints.y.small and newPos.y <= player.constraints.y.big then
+			if player.map:nextTileIsWalkable(player.pos.x,
+											 player.pos.y,
+											 newPos.dir,
+											 player.map.currentTilemap) then
+				player.pos.y = newPos.y
+			end
+		elseif newPos.y > player.constraints.y.big then
+			player.pos.y = player.constraints.y.big
+		elseif newPos.y < player.constraints.y.small then
+			player.pos.y = player.constraints.y.small
+		end
+
+		
+
 		player.direction = newPos.dir
 
 		-- Getting new constraints and exit, if player enters the room
-		local constraints, exit = mapRef:movePlayer(player.pos.x, player.pos.y)
+		local constraints, exit = Map:movePlayer(player.pos.x, player.pos.y)
 		if constraints then
 			player:setRoomConstraints(constraints, exit)
 		end
