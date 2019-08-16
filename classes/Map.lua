@@ -110,8 +110,6 @@ function Map:new(tileSize, tilesNumber, Game)
 
 	function map:draw()
 
-		local curTilemap
-
 		if checkIfInTheRoom() == map.rooms.ROOM1 then
 			map.currentRoom = map.rooms.ROOM1
 			map.currentTilemap = map[map.currentRoom].tiles
@@ -186,25 +184,30 @@ function Map:new(tileSize, tilesNumber, Game)
 		if dir == 'up' and y-2 >= 0 then
 			if tilemap[(y-2) * map.tilesNumber + x] == 3 or 
 				tilemap[(y-2) * map.tilesNumber + x] == 0 then
+				print('walkable')
 				return true
 			end
 		elseif dir == 'down' and y <= map.tilesNumber then
 			if tilemap[y * map.tilesNumber + x] == 3 or 
 				tilemap[y * map.tilesNumber + x] == 0 then
+				print('walkable')
 				return true
 			end
 		elseif dir == 'left' then
 			if tilemap[(y-1) * map.tilesNumber + x - 1] == 3 or 
 				tilemap[(y-1) * map.tilesNumber + x - 1] == 0 then
+				print('walkable')
 				return true
 			end
 		elseif dir == 'right' then
 			if tilemap[(y-1) * map.tilesNumber + x + 1] == 3 or 
 				tilemap[(y-1) * map.tilesNumber + x + 1] == 0 then
+				print('walkable')
 				return true
 			end
 		end
 
+		print('unwalkable')
 		return false
 	end
 
