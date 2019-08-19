@@ -83,8 +83,8 @@ function Player:new(pos_x, pos_y, tileSize, Map, Game)
 			if Game.DEBUG then print('Direction changed to ' .. newPos.dir .. '!') end
 		end
 
-		print(newPos.x, newPos.y, newPos.dir)
-		print(player.pos.x, player.pos.y, player.direction)
+		if Game.DEBUG then print(newPos.x, newPos.y, newPos.dir) end
+		if Game.DEBUG then print('Player pos: ', player.pos.x, player.pos.y, player.direction) end
 
 		-- If in the room and goes to the exit - unlock the room constraints
 		if player.constraints.exit then
@@ -95,37 +95,9 @@ function Player:new(pos_x, pos_y, tileSize, Map, Game)
 			end
 		end
 
-		-- Setting new player position depending on the constraints
-		--[[if newPos.x >= player.constraints.x.small and newPos.x <= player.constraints.x.big then
-			if player.map:nextTileIsWalkable(player.pos.x,
-											 player.pos.y,
-											 newPos.dir,
-											 player.map.currentTilemap) then
-				player.pos.x = newPos.x
-			end
-		elseif newPos.x > player.constraints.x.big then
-			player.pos.x = player.constraints.x.big
-		elseif newPos.x < player.constraints.x.small then
-			player.pos.x = player.constraints.x.small
-		end
-
-		if newPos.y >= player.constraints.y.small and newPos.y <= player.constraints.y.big then
-			if player.map:nextTileIsWalkable(player.pos.x,
-											 player.pos.y,
-											 newPos.dir,
-											 player.map.currentTilemap) then
-				player.pos.y = newPos.y
-			end
-		elseif newPos.y > player.constraints.y.big then
-			player.pos.y = player.constraints.y.big
-		elseif newPos.y < player.constraints.y.small then
-			player.pos.y = player.constraints.y.small
-		end--]]
-
 		if player.map:nextTileIsWalkable(player.pos.x,
 										 player.pos.y,
-										 newPos.dir,
-										 player.map.currentTilemap) then
+										 newPos.dir) then
 			player.pos.x = newPos.x
 			player.pos.y = newPos.y
 			mapMoveVector.x = dx * player.size
@@ -140,15 +112,6 @@ function Player:new(pos_x, pos_y, tileSize, Map, Game)
 			player:setRoomConstraints(constraints, exit)
 		end
 
-		-- Returns move vector multiplied by tile size (for camera translation)
-		--[[return {
-			x = (newPos.x >= player.constraints.x.small and 
-				((newPos.x <= player.constraints.x.big and dx * player.size) or 
-					0)) or 0,
-			y = (newPos.y >= player.constraints.y.small and 
-				((newPos.y <= player.constraints.y.big and dy * player.size) or 
-					0)) or 0
-		}--]]
 		return mapMoveVector
 	end
 

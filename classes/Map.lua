@@ -126,7 +126,7 @@ function Map:new(tileSize, tilesNumber, Game)
 		love.graphics.rectangle('fill', 0, 0, map.tileSize * map.tilesNumber, map.tileSize * map.tilesNumber)
 		love.graphics.setColor(1, 1, 1, 1)
 
-		for i = 1,map.tilesNumber do
+		for i = 1, map.tilesNumber do
 			for j = 1, map.tilesNumber do
 
 				local workQuad
@@ -180,34 +180,62 @@ function Map:new(tileSize, tilesNumber, Game)
 	end
 
 	-- Current tile    tilemap[(y-1) * map.tilesNumber + x]
-	function map:nextTileIsWalkable(x, y, dir, tilemap)
-		if dir == 'up' and y-2 >= 0 then
-			if tilemap[(y-2) * map.tilesNumber + x] == 3 or 
-				tilemap[(y-2) * map.tilesNumber + x] == 0 then
-				print('walkable')
+	function map:nextTileIsWalkable(x, y, dir)
+		if dir == 'up' and (y - 1) >= 0 then
+
+			if map.currentTilemap[(y - 1) * map.tilesNumber + x + 1] == 3 or 
+				map.currentTilemap[(y - 1) * map.tilesNumber + x + 1] == 0 or 
+				map.currentTilemap[y * map.tilesNumber + x + 1] == 3 then
+				if Game.DEBUG then print('walkable: ',
+										 map.currentTilemap[(y - 1) * map.tilesNumber + x + 1], 
+										 y - 1,
+										 x + 1) end
+
 				return true
 			end
-		elseif dir == 'down' and y <= map.tilesNumber then
-			if tilemap[y * map.tilesNumber + x] == 3 or 
-				tilemap[y * map.tilesNumber + x] == 0 then
-				print('walkable')
+
+		elseif dir == 'down' and (y + 1) <= map.tilesNumber then
+
+			if map.currentTilemap[(y + 1) * map.tilesNumber + x + 1] == 3 or 
+				map.currentTilemap[(y + 1) * map.tilesNumber + x + 1] == 0 or 
+				map.currentTilemap[y * map.tilesNumber + x + 1] == 3 then
+				if Game.DEBUG then print('walkable: ',
+										 map.currentTilemap[(y + 1) * map.tilesNumber + x + 1],
+										 y + 1,
+										 x + 1) end
+
 				return true
 			end
-		elseif dir == 'left' then
-			if tilemap[(y-1) * map.tilesNumber + x - 1] == 3 or 
-				tilemap[(y-1) * map.tilesNumber + x - 1] == 0 then
-				print('walkable')
+
+		elseif dir == 'left' and x >= 1 then
+
+			if map.currentTilemap[y * map.tilesNumber + x] == 3 or 
+				map.currentTilemap[y * map.tilesNumber + x] == 0 or 
+				map.currentTilemap[y * map.tilesNumber + x + 1] == 3 then
+				if Game.DEBUG then print('walkable: ',
+										 map.currentTilemap[y * map.tilesNumber + x],
+										 y,
+										 x) end
+
 				return true
 			end
-		elseif dir == 'right' then
-			if tilemap[(y-1) * map.tilesNumber + x + 1] == 3 or 
-				tilemap[(y-1) * map.tilesNumber + x + 1] == 0 then
-				print('walkable')
+
+		elseif dir == 'right' and (x + 2) <= map.tilesNumber then
+
+			if map.currentTilemap[y * map.tilesNumber + x + 2] == 3 or 
+				map.currentTilemap[y * map.tilesNumber + x + 2] == 0 or 
+				map.currentTilemap[y * map.tilesNumber + x + 1] == 3 then
+				if Game.DEBUG then print('walkable: ',
+										 map.currentTilemap[y * map.tilesNumber + x + 2],
+										 y,
+										 x + 2) end
+
 				return true
 			end
+
 		end
 
-		print('unwalkable')
+		if Game.DEBUG then print('unwalkable') end
 		return false
 	end
 
