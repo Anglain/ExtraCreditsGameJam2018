@@ -16,8 +16,8 @@ function PauseGui:new(refGspot, refFontTable, Game)
 		gui = refGspot()
 	}
 
-	pauseGui.gui.style.unit = Game.SCREEN_SIZE * 0.08
-	pauseGui.gui.style.gapSize = Game.SCREEN_SIZE * 0.02
+	pauseGui.gui.style.unit = Game.SCREEN_SIZE.h * 0.08
+	pauseGui.gui.style.gapSize = Game.SCREEN_SIZE.h * 0.02
 	pauseGui.gui.style.font = refFontTable['PTMonoRegularLarge']
 
 
@@ -27,8 +27,8 @@ function PauseGui:new(refGspot, refFontTable, Game)
 	local pauseButtonW, pauseButtonH = pauseGui.gui.style.unit * 2.3, pauseGui.gui.style.unit * 1.5
 	local pauseText = 'Paused'
 	local pauseTextObj = pauseGui.gui:text(pauseText, {
-		x = Game.SCREEN_SIZE * 0.5 - pauseButtonW * 0.75,
-		y = Game.SCREEN_SIZE * 0.5 - pauseButtonH * 0.5,
+		x = Game.SCREEN_SIZE.w * 0.5 - pauseButtonW * 0.75,
+		y = Game.SCREEN_SIZE.h * 0.5 - pauseButtonH * 0.5,
 		w = pauseButtonW * 1.5
 	})
 

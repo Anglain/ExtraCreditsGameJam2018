@@ -16,8 +16,8 @@ function GameGui:new(refGspot, refFontTable, Game)
 		gui = refGspot()
 	}
 
-	gameGui.gui.style.unit = Game.SCREEN_SIZE * 0.04
-	gameGui.gui.style.gapSize = Game.SCREEN_SIZE * 0.01
+	gameGui.gui.style.unit = Game.SCREEN_SIZE.h * 0.04
+	gameGui.gui.style.gapSize = Game.SCREEN_SIZE.h * 0.01
 	gameGui.gui.style.font = refFontTable['PTMonoRegularSmall']
 
 

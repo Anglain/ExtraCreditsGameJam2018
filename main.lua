@@ -24,7 +24,10 @@ local Game = {
 	TILE_SIZE = 64,
 	MAP_TILES = 10,
 	MAP_SIZE = 0, -- initialization is under the Game table
-	SCREEN_SIZE = 640,
+	SCREEN_SIZE = {
+		w = 1280,
+		h = 720
+	},
 
 	GameStates = {
 		MainMenu = 'MainMenu',
@@ -59,8 +62,8 @@ function love.load()
 
 	map = Map:new(Game.TILE_SIZE, Game.MAP_TILES, Game)
 	player = Player:new(0, 0, Game.TILE_SIZE, map, Game)
-	graphicsTranslation.x = graphicsTranslation.x - Game.SCREEN_SIZE * 0.5 + Game.TILE_SIZE * 0.5
-	graphicsTranslation.y = graphicsTranslation.y - Game.SCREEN_SIZE * 0.5 + Game.TILE_SIZE * 0.5
+	graphicsTranslation.x = graphicsTranslation.x - Game.SCREEN_SIZE.w * 0.5 + Game.TILE_SIZE * 0.5
+	graphicsTranslation.y = graphicsTranslation.y - Game.SCREEN_SIZE.h * 0.5 + Game.TILE_SIZE * 0.5
 
 	mainMenuGui = MainMenuGui:new(gspot, fontTable, Game)
 	gameGui = GameGui:new(gspot, fontTable, Game)
