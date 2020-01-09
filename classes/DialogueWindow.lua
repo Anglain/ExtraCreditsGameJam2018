@@ -13,8 +13,6 @@ function DialogueWindow:new(refGspot, refFontTable, Game)
 		scenes
 	}
 
-
-
 	function dialogue:update(dt)
 		dialogue.gui:update(dt)
 	end

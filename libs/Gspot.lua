@@ -808,13 +808,29 @@ Gspot.text = {
 }
 setmetatable(Gspot.text, {__index = Gspot.util, __call = Gspot.text.load})
 
+-- {{stopAnimation}} variable lets you stop the typing of typetext, if true
+-- {{restartAnimation}} variable lets your restart the animation of the text
 Gspot.typetext = {
 	load = function(this, Gspot, label, pos, parent, autosize)
+		this.stopAnimation = false
+		this.restartAnimation = false
+
 		local element = Gspot:text('', pos, parent, autosize)
 		element.values = {text = label, cursor = 1}
 		element.updateinterval = 0.1
 		element.update = function(this, dt)
-			this.values.cursor = utf8char_after(this.values.text, this.values.cursor + 1) - 1
+			if this.restartAnimation then
+				this.values.cursor = 1
+				this.restartAnimation = false
+				this.stopAnimation = false
+			elseif this.stopAnimation then
+				this.values.cursor = utf8char_after(this.values.text, this.values.text:len() + 1) - 1
+				this.stopAnimation = false
+				this.restartAnimation = false
+			else
+				this.values.cursor = utf8char_after(this.values.text, this.values.cursor + 1) - 1
+			end
+
 			this.label = this.values.text:sub(1, this.values.cursor)
 		end
 		return Gspot:add(element)

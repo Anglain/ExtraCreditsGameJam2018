@@ -42,7 +42,7 @@ function PauseGui:new(refGspot, refFontTable, Game)
 
 	function pauseGui:draw()
 		love.graphics.setColor(0/255, 0/255, 0/255, 0.3)
-		love.graphics.rectangle('fill', 0, 0, Game.SCREEN_SIZE, Game.SCREEN_SIZE)
+		love.graphics.rectangle('fill', 0, 0, Game.SCREEN_SIZE.w, Game.SCREEN_SIZE.h)
 		pauseGui.gui:draw()
 	end
 

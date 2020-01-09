@@ -28,6 +28,7 @@ local Game = {
 		w = 1280,
 		h = 720
 	},
+	gameState = nil,
 
 	GameStates = {
 		MainMenu = 'MainMenu',

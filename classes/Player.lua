@@ -44,7 +44,7 @@ function Player:new(pos_x, pos_y, tileSize, Map, Game)
 		},
 		map = Map,
 		color = {145/255, 126/255, 100/255, 1},
-		img = love.graphics.newImage('images/Saya.png')
+		img = love.graphics.newImage('images/PixelOwlShine_front.png')
 	}
 	player.constraints.x.small = 0
 	player.constraints.x.big = player.map.tilesNumber - 1
